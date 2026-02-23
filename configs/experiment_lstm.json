@@ -1,0 +1,49 @@
+{
+  "project": {
+    "name": "MBGA_COVID_Forecast_DeepLSTM",
+    "version": "2.0.0",
+    "description": "使用多层LSTM + 中等特征集"
+  },
+  "data": {
+    "sequence_length": 6,
+    "covid_start_date": "2020-01-01",
+    "validation_ratio": 0.15,
+    "test_ratio": 0.15
+  },
+  "features": {
+    "use_seasonal": true,
+    "use_trends": true,
+    "trends_lags": [1, 2, 3],
+    "target_col": "value",
+    "baseline_features": ["flu_Trends"],
+    "covid_features": ["flu_Trends", "COVID_19_Trends"]
+  },
+  "model": {
+    "type": "simple_gru",
+    "input_size": 1,
+    "hidden_size": 32,
+    "num_layers": 1,
+    "dropout": 0.5,
+    "covid_model": {
+      "type": "simple_lstm",
+      "hidden_size": 48,
+      "num_layers": 2,
+      "dropout": 0.3,
+      "learning_rate": 0.0006,
+      "epochs": 150,
+      "patience": 35,
+      "batch_size": 12
+    }
+  },
+  "training": {
+    "epochs": 100,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 16,
+    "patience": 20
+  },
+  "paths": {
+    "model_path": "trained_models/",
+    "results_path": "outputs/"
+  }
+}

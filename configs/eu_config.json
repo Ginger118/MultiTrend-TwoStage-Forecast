@@ -1,0 +1,18 @@
+{
+    "data": {
+        "sequence_length": 4
+    },
+    "model": {
+        "type": "mbga",
+        "hidden_size": 64,
+        "num_layers": 1,
+        "dropout": 0.1
+    },
+    "training": {
+        "epochs": 200,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.001,
+        "batch_size": 8,
+        "patience": 30
+    }
+}

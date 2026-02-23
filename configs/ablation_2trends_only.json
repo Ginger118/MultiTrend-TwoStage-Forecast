@@ -1,0 +1,45 @@
+{
+  "experiment_name": "Multi-Trend Attention - 2 Trends Only",
+  "description": "只使用flu和COVID_19两个最相关的trends",
+  "data": {
+    "resp_file": "Cleaned_RESP.csv",
+    "flu_file": "Cleaned_Flu_RSV_Combined.csv",
+    "covid_start_date": "2020-01-01",
+    "trends_files": ["flu_Trends", "COVID_19_Trends", "fever_Trends", "loss_of_smell_Trends"]
+  },
+  "features": {
+    "baseline_features": ["flu_Trends"],
+    "covid_features": ["flu_Trends", "COVID_19_Trends"],
+    "lags": [1, 2, 3]
+  },
+  "model": {
+    "type": "simple_gru",
+    "hidden_size": 32,
+    "num_layers": 1,
+    "dropout": 0.5,
+    "covid_model": {
+      "type": "multi_trend_attention",
+      "num_trends": 2,
+      "trend_dim": 4,
+      "encoder_hidden": 16,
+      "num_heads": 2,
+      "fusion_hidden": 24,
+      "dropout": 0.35,
+      "learning_rate": 0.002,
+      "epochs": 200,
+      "patience": 25,
+      "weight_decay": 0.001,
+      "batch_size": 32
+    }
+  },
+  "training": {
+    "epochs": 100,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "patience": 15,
+    "sequence_length": 6
+  },
+  "features_config": {
+    "use_seasonal_features": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "description": "大数据集配置 - 适用于数十万样本",
+  "model": {
+    "type": "EnhancedMABG",
+    "hidden_size": 64,
+    "num_layers": 2,
+    "dropout": 0.2,
+    "attention_heads": 8,
+    "reduction": 16
+  },
+  "training": {
+    "epochs": 200,
+    "learning_rate": 0.001,
+    "weight_decay": 0.001,
+    "batch_size": 64,
+    "patience": 20
+  }
+}

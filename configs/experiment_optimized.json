@@ -1,0 +1,50 @@
+{
+  "project": {
+    "name": "MBGA_COVID_Forecast_Optimized",
+    "version": "2.0.0",
+    "description": "优化版：单特征+强正则化+数据增强"
+  },
+  "data": {
+    "sequence_length": 4,
+    "covid_start_date": "2020-01-01",
+    "validation_ratio": 0.12,
+    "test_ratio": 0.13
+  },
+  "features": {
+    "use_seasonal": true,
+    "use_trends": true,
+    "trends_lags": [1, 2],
+    "target_col": "value",
+    "baseline_features": ["flu_Trends"],
+    "covid_features": ["flu_Trends"]
+  },
+  "model": {
+    "type": "simple_gru",
+    "input_size": 1,
+    "hidden_size": 32,
+    "num_layers": 1,
+    "dropout": 0.5,
+    "covid_model": {
+      "type": "simple_gru",
+      "hidden_size": 24,
+      "num_layers": 1,
+      "dropout": 0.65,
+      "learning_rate": 0.0012,
+      "weight_decay": 0.015,
+      "epochs": 200,
+      "patience": 40,
+      "batch_size": 8
+    }
+  },
+  "training": {
+    "epochs": 100,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 16,
+    "patience": 20
+  },
+  "paths": {
+    "model_path": "trained_models/",
+    "results_path": "outputs/"
+  }
+}

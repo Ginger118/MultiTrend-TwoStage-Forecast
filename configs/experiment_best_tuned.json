@@ -1,0 +1,40 @@
+{
+  "data": {
+    "resp_file": "Cleaned_RESP.csv",
+    "flu_file": "Cleaned_Flu_RSV_Combined.csv",
+    "covid_start_date": "2020-01-01",
+    "trends_files": ["flu_Trends", "COVID_19_Trends", "fever_Trends", "loss_of_smell_Trends"]
+  },
+  "features": {
+    "baseline_features": ["flu_Trends"],
+    "covid_features": ["flu_Trends"],
+    "lags": [1, 2]
+  },
+  "model": {
+    "type": "simple_gru",
+    "hidden_size": 32,
+    "num_layers": 1,
+    "dropout": 0.5,
+    "covid_model": {
+      "type": "simple_gru",
+      "hidden_size": 24,
+      "num_layers": 1,
+      "dropout": 0.35,
+      "learning_rate": 0.0025,
+      "epochs": 250,
+      "patience": 35,
+      "weight_decay": 0.0005,
+      "batch_size": 32
+    }
+  },
+  "training": {
+    "epochs": 100,
+    "batch_size": 16,
+    "learning_rate": 0.001,
+    "patience": 15,
+    "sequence_length": 4
+  },
+  "features_config": {
+    "use_seasonal_features": true
+  }
+}

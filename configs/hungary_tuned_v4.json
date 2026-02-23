@@ -1,0 +1,43 @@
+{
+  "experiment_name": "Hungary Tuned v4 - Simple GRU Only",
+  "description": "尝试简单GRU模型作为COVID model，看是否数据量不足以支持复杂模型",
+  "region": "Hungary",
+  "data": {
+    "resp_file": "Cleaned_RESP.csv",
+    "flu_file": "Cleaned_Flu_RSV_Combined.csv",
+    "covid_start_date": "2020-01-01",
+    "trends_files": ["flu_Trends", "COVID_19_Trends", "fever_Trends", "loss_of_smell_Trends"]
+  },
+  "features": {
+    "baseline_features": ["flu_Trends"],
+    "covid_features": ["flu_Trends", "COVID_19_Trends", "fever_Trends"],
+    "lags": [1, 2]
+  },
+  "model": {
+    "type": "simple_gru",
+    "hidden_size": 32,
+    "num_layers": 1,
+    "dropout": 0.3,
+    "covid_model": {
+      "type": "simple_gru",
+      "hidden_size": 32,
+      "num_layers": 1,
+      "dropout": 0.3,
+      "learning_rate": 0.001,
+      "epochs": 150,
+      "patience": 25,
+      "weight_decay": 0.0005,
+      "batch_size": 32
+    }
+  },
+  "training": {
+    "epochs": 100,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "patience": 20,
+    "sequence_length": 6
+  },
+  "features_config": {
+    "use_seasonal_features": true
+  }
+}

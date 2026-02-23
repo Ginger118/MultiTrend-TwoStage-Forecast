@@ -1,0 +1,16 @@
+{
+  "description": "极简LSTM配置 - 用于小数据集",
+  "model": {
+    "type": "SimpleLSTM",
+    "hidden_size": 16,
+    "num_layers": 1,
+    "dropout": 0.4
+  },
+  "training": {
+    "epochs": 100,
+    "learning_rate": 0.001,
+    "weight_decay": 0.05,
+    "batch_size": 8,
+    "patience": 20
+  }
+}

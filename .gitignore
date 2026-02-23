@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/
+
+# Large Files
+*.pth
+*.checkpoints
+
+# Results
+outputs/
+logs/
+
+# Optional: keep empty outputs folder but ignore content
+!outputs/.gitkeep
+
+# System
+.DS_Store
+Thumbs.db
