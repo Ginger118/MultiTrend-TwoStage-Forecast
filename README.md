@@ -2,7 +2,7 @@
 
 A novel Two-Stage framework for robust epidemic forecasting, combining baseline seasonal modeling with a multi-trend attention mechanism for capturing irregular pandemic surges.
 
-![Model Architecture](outputs/framework_diagram.png) *(To be added)*
+![Model Architecture](model.png) 
 
 ## Key Features
 
@@ -63,11 +63,4 @@ Generate decomposition plots to visualize the Baseline vs. Excess components:
 python scripts/visualize_decomposition.py
 ```
 
-## Citation
 
-If you use this code in your research, please cite our paper:
-> [Author Name] et al. "A Two-Stage Multi-Trend Framework for Robust Epidemic Forecasting." [Journal Name], 2026.
-
-## License
-
-MIT License
